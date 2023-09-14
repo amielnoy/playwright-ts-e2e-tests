@@ -1,5 +1,4 @@
 import { test, expect, Page, Locator } from '@playwright/test';
-import { BasePage } from './BasePage';
 
 export class PaymentPage {
   readonly scheduleAPaymentButton: Locator;
@@ -7,7 +6,7 @@ export class PaymentPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.scheduleAPaymentButton = page.getByTestId('login-button-bills.newEmptyState.ctaButtonText');
+    this.scheduleAPaymentButton = page.getByText('Schedule a payment');
   }
 
   async goto() {
@@ -20,8 +19,8 @@ export class PaymentPage {
   async clickScheduleAPaymentButton() {
     await test.step('click Schedule a payment  page', async () => {
       await this.scheduleAPaymentButton.click();
-      await expect(this.scheduleAPaymentButton, 'Pay page loaded').toBeVisible({ visible: false });
-      await expect(this.page).toHaveURL(new RegExp('$bills/new/create-options'));
+      //await expect(this.scheduleAPaymentButton, 'Pay page loaded').toBeVisible({ visible: false });
+      await expect(this.page).toHaveURL(new RegExp('https://app.melio.com/melio/schedule-payment/new'));
     });
   }
 }

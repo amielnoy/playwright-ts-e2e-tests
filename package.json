@@ -7,7 +7,7 @@
     "prepare": "husky install",
     "clean": "npm run clean:results && npm run clean:modules",
     "clean:modules": "rimraf ./node_modules",
-    "clean:results": "rimraf ./playwright-report ./playwright-monocart-report ./test-results",
+    "clean:results": "rimraf ./playwright-report ./playwright-monocart-report ./test-results ./allure-results",
     "docker:build": "docker build . -t e2e-playwright",
     "merge:report:playwright": "tsx merge-playwright-reports.ts",
     "merge:report:monocart": "tsx merge-monocart-reports.ts"
@@ -37,8 +37,10 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@melio/shared-web": "github:melio/shared-web",
+    "@melio/platform-utils": "^0.12.0",
     "allure-js-commons": "^2.4.0",
-    "dotenv": "^16.3.1"
+    "clean-dir": "^1.0.3",
+    "dotenv": "^16.3.1",
+    "react": "^18.2.0"
   }
 }

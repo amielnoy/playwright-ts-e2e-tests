@@ -1,7 +1,6 @@
 /* eslint-disable indent */
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
-import path from 'path';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -70,7 +69,7 @@ export default defineConfig({
           'allure-playwright',
           {
             detail: true,
-            outputFolder: 'my-allure-results',
+            outputFolder: 'allure-results',
             suiteTitle: true
           }
         ]
@@ -116,16 +115,12 @@ export default defineConfig({
       name: 'chromium',
       testMatch: '**/*.spec.ts',
       testIgnore: 'tests/login.spec.ts',
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
-         trace: process.env.CI ? 'retain-on-failure' : 'retain-on-failure'
-      },
-  
+        trace: process.env.CI ? 'retain-on-failure' : 'retain-on-failure'
+      }
     },
-      
-    
 
-    
     //,
 
     // {
@@ -133,10 +128,10 @@ export default defineConfig({
     //   use: { ...devices['Desktop Firefox'] }
     // },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] }
-    // }
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] }
+    }
 
     /* Test against mobile viewports. */
     // {
