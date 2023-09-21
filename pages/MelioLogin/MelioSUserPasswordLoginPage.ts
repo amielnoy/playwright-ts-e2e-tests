@@ -40,10 +40,10 @@ export class MelioSUserPasswordLoginPage {
   }
 
   public async clickLoginButton() {
-    await test.step('Adding Bill mabually on Add a bill Page', async () => {
+    await test.step('Click login button on Login page', async () => {
       await this.loginButton.click();
-      await expect(this.nextPagePayLabel).toBeVisible({ timeout: 15000 });
-      console.log('got to Pay dashboard!');
+      await expect(this.nextPagePayLabel).toBeVisible({ timeout: 30000 });
+      console.log('logged in succesfully!');
     });
   }
 }

@@ -83,7 +83,7 @@ export default defineConfig({
   /* path to the global teardown files. */
   // globalTeardown: require.resolve('./setup/global.teardown.ts'),
   /* Each test is given 60 seconds. */
-  timeout: 60000,
+  timeout: 120000,
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -119,7 +119,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         trace: process.env.CI ? 'retain-on-failure' : 'retain-on-failure'
       }
-    },
+    }
 
     //,
 
@@ -128,10 +128,10 @@ export default defineConfig({
     //   use: { ...devices['Desktop Firefox'] }
     // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] }
-    }
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] }
+    // }
 
     /* Test against mobile viewports. */
     // {

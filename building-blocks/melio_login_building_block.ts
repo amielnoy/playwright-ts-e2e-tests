@@ -12,7 +12,7 @@ export class MelioLoginBuildingBlock {
     await this.loginPage.setUserName(username);
     await this.loginPage.setPassword(password);
     await this.loginPage.clickLoginButton();
-    console.log('logged in sucessfuly');
+    console.log('got to Pay dashboard!');
   }
 
   async gotoLoginPage() {

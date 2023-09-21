@@ -10,7 +10,9 @@ export class AddBillToPayPage extends BasePage {
   constructor(page: Page) {
     super(page);
     // eslint-disable-next-line max-len
-    this.addABillManuallyButton = page.getByTestId('login-bill-create-option-bills.new.createOptions.addBillManually-bills.newEmptyState.ctaButtonText');
+    this.addABillManuallyButton = page.getByTestId(
+      'login-bill-create-option-bills.new.createOptions.addBillManually-bills.newEmptyState.ctaButtonText'
+    );
     this.usernameField = page.getByTestId('username');
     this.passwordField = page.getByTestId('password');
     this.loginButton = page.getByTestId('submit');
