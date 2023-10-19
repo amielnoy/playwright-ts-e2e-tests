@@ -1,4 +1,4 @@
-import { test, expect, Page, Locator } from '@playwright/test';
+import { test, Page, expect, Locator } from '@playwright/test';
 
 export class PayScheduledPage {
   readonly scheduledPaymentDetailsMenu: Locator;
@@ -6,19 +6,23 @@ export class PayScheduledPage {
   readonly cancelConfirmationPopUp: Locator;
   readonly noScheduledItemsMessage: Locator;
   readonly tabScheduled: Locator;
+  readonly cancelScheduledPaymentShadowResponce: Locator;
+
   readonly page: Page;
 
   constructor(page: Page) {
     this.page = page;
     this.scheduledPaymentDetailsMenu = page.getByTestId('scheduled-payment-details-menu');
     this.scheduledPaymentDetailsMenuItemCancel = page.getByTestId('scheduled-payment-details-menu-cancel');
-    this.cancelConfirmationPopUp = page.getByTestId('modal-btn-primary');
+    //this.cancelConfirmationPopUp = page.getByTestId('modal-btn-primary');
+    this.cancelConfirmationPopUp = page.getByLabel('Cancel payment');
     this.noScheduledItemsMessage = page.getByText('Your bill details will show here');
     this.tabScheduled = page.getByTestId('tab_scheduled');
+    this.cancelScheduledPaymentShadowResponce = page.locator('#chakra-toast-manager-top').getByText('Payment canceled');
   }
 
   async clickMenuCancelSceduledPayment() {
-    await test.step('click Actions and edit Bill on PayInbox tab page', async () => {
+    await test.step('click CANCEL MENU OPTION on PayInbox tab page', async () => {
       await this.scheduledPaymentDetailsMenu.click();
       await this.scheduledPaymentDetailsMenuItemCancel.click();
       //await expect(this.scheduleAPaymentButton, 'Pay page loaded').toBeVisible({ visible: false });
@@ -27,11 +31,12 @@ export class PayScheduledPage {
     });
   }
 
-  async clickCancelScheduledPayment() {
-    await test.step('click Actions and edit Bill on PayInbox tab page', async () => {
+  async clickCancelOnConfirmationPopUpOfScheduledPayment() {
+    await test.step('click CANCEL CONFIRMATION POPUP button  on PayInbox tab page', async () => {
       console.log('before canceling scheduled payment on scheduled payments page succesfuly');
       await this.cancelConfirmationPopUp.click();
-      await expect(this.noScheduledItemsMessage).toBeVisible({ timeout: 10000 });
+      await expect(this.cancelScheduledPaymentShadowResponce).toBeVisible({ timeout: 10000 });
+      //await this.page.waitForTimeout(5000);
       console.log('After **canceling scheduled payment** on scheduled payments page succesfuly');
     });
   }

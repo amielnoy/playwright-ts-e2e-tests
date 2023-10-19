@@ -7,8 +7,8 @@ import dotenv from 'dotenv';
  */
 // require('dotenv').config();
 
-const env = process.env.CURR_ENV ? process.env.CURR_ENV : 'testing';
-const env_path = `./environments/.env.${env}`;
+const env = process.env.CURR_ENV ? process.env.CURR_ENV : 'local_sanity';
+const env_path = `./environment/.env.${env}`;
 
 dotenv.config({
   path: env_path,
@@ -83,7 +83,7 @@ export default defineConfig({
   /* path to the global teardown files. */
   // globalTeardown: require.resolve('./setup/global.teardown.ts'),
   /* Each test is given 60 seconds. */
-  timeout: 120000,
+  timeout: 60000,
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test';
-import { MelioSUserPasswordLoginPage } from '../pages/MelioLogin/MelioSUserPasswordLoginPage';
+import { MelioSUserPasswordLoginPage } from '../../pages/MelioLogin/MelioSUserPasswordLoginPage';
 
 export class MelioLoginBuildingBlock {
   readonly loginPage: MelioSUserPasswordLoginPage;
