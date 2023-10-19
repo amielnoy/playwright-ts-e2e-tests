@@ -2,7 +2,7 @@ import { test, expect, Page, Locator } from '@playwright/test';
 import WebElementsOperations from '../../../utils/gui-utils/WebElementsOperations';
 //import DatePickerOperations from '../../../utils/gui-utils/datePickerOperations'
 import DateOperations from '../../../utils/time-utils/dates';
-import DatePickerOperations from '../../../utils/gui-utils/datePickerOperations';
+import DatePickerOperations from '../../../utils/gui-utils/DatePickerOperations';
 
 export class PaymentInboxPage {
   readonly scheduleAPaymentButton: Locator;
