@@ -210,8 +210,8 @@ export class PaymentInboxPage {
 
   async validateNewVendorExistsAndFocused(newVendorName: string) {
     await test.step('validate new vendor card visible and focused on PayInbox tab page LEFT INNER TAB', async () => {
-      const newVendorCardLocator: Locator;
-      newVendorCardLocator = PaymentInboxPage.getNewVendorCard(newVendorName, this.page).nth(1);
+      const newVendorCardLocator: Locator = PaymentInboxPage.getNewVendorCard(newVendorName, this.page).nth(1);
+
       await expect(newVendorCardLocator).toBeVisible();
       expect(newVendorCardLocator.getAttribute('data-selected')).toBeTruthy();
       console.log('NEW VENDOR CARD ' + newVendorName + ' is visible and focused on PayInbox  tab page LEFT INNER TAB succesfully');
