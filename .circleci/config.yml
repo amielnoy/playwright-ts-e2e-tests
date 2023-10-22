@@ -12,6 +12,14 @@ jobs:
       - run: npm i -D @playwright/test
       - run: npx playwright install chrome
       - run:
+          name: create enviornment file from circle ci.
+          command: |
+            set -x
+            ENV_FILE="environment/.env.local_sanity"
+            echo "$USERNAME1=${!USERNAME1}" >> "$ENV_FILE"
+            echo "$PASSWORD1=${!$PASSWORD1}" >> "$ENV_FILE"
+            set +x  
+      - run:
           name: run the test.
           command: |
             set -x
