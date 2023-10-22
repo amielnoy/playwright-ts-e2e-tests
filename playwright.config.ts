@@ -1,6 +1,8 @@
 /* eslint-disable indent */
 import { defineConfig, devices } from '@playwright/test';
+
 import dotenv from 'dotenv';
+import path from 'path';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -15,8 +17,15 @@ dotenv.config({
   override: true
 });
 
-function getBaseUrl() {
+function getBaseUrlAndSetEnviornment(projectName: string) {
+  const envPath = path.resolve(__dirname, `./environment/projects/.env.${projectName}`);
+  dotenv.config({
+    path: envPath,
+    override: true
+  });
+
   const environment = process.env.ENV;
+
   if (environment == undefined || environment == null) return 'https://automationintesting.online/';
   else if (environment == 'prod') return 'https://automationintesting.online/';
   else if (environment == 'local') return 'http://localhost';
@@ -41,7 +50,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 4 : 12,
+  workers: process.env.CI ? 1 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
     ? [
@@ -53,11 +62,19 @@ export default defineConfig({
             name: 'Playwright E2E Tests',
             outputFile: './playwright-monocart-report/index.html'
           }
+        ],
+        [
+          'allure-playwright',
+          {
+            detail: true,
+            outputFolder: 'allure-results',
+            suiteTitle: true
+          }
         ]
       ]
     : [
         ['list'],
-        ['html', { open: 'on-failure', outputFile: outputFolder }],
+        ['html', { open: 'always', outputFile: outputFolder }],
         [
           'monocart-reporter',
           {
@@ -88,7 +105,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: getBaseUrl(),
+    //baseURL: getBaseUrl('chrome'),
     /* Populates context with given storage state. */
     // storageState: './state.json',
     /* Viewport used for all pages in the context. */
@@ -117,7 +134,8 @@ export default defineConfig({
       testIgnore: 'tests/login.spec.ts',
       use: {
         ...devices['Desktop Chrome'],
-        trace: process.env.CI ? 'retain-on-failure' : 'retain-on-failure'
+        trace: process.env.CI ? 'retain-on-failure' : 'retain-on-failure',
+        baseURL: getBaseUrlAndSetEnviornment('chromium') // Pass the project name or identifier
       }
     }
 
@@ -128,9 +146,23 @@ export default defineConfig({
     //   use: { ...devices['Desktop Firefox'] }
     // },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] }
+    //  {
+    //    name: 'safari',
+    //    use: {
+    //      ...devices['Desktop Safari'] ,
+    //      trace: process.env.CI ? 'retain-on-failure' : 'retain-on-failure',
+    //      baseURL: getBaseUrlAndSetEnviornment('safari') // Pass the project name or identifier
+    //    }
+    //  },
+
+    //  {
+    //   name: 'edge',
+    //   use: {
+    //     ...devices['Desktop Edge'],
+    //     channel: 'msedge',
+    //     trace: process.env.CI ? 'retain-on-failure' : 'retain-on-failure',
+    //     baseURL: getBaseUrlAndSetEnviornment('edge') // Pass the project name or identifier
+    //   }
     // }
 
     /* Test against mobile viewports. */
