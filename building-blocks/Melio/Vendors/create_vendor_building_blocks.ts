@@ -5,6 +5,8 @@ import { VendorsPage } from '../../../pages/MelioVendors/VendorsPage';
 
 import { NewVendorDetails } from '../../../types/NewVendorDetails';
 
+import CustomizedExpects from '../../../utils/assertions/expects';
+
 export class CreateVendorBuildingBlocks {
   readonly page: Page;
   readonly currAddNewVendorPage: AddNewVendorPage;
@@ -30,7 +32,9 @@ export class CreateVendorBuildingBlocks {
     await test.step('validate VENDOR BUSINESS NAME on Add new vendor page', async () => {
       //validate new vendor business name
       const actualVendorBusinessName = await this.currAddNewVendorPage.getEditVendorBuisnessEdit();
-      expect(actualVendorBusinessName).toBe(newVendorDetails.vendor_business_name);
+      // expect(actualVendorBusinessName,`ACTUAL=${actualVendorBusinessName} should be===${newVendorDetails.vendor_business_name}=EXPECTED`)
+      // .toBe(newVendorDetails.vendor_business_name);
+      CustomizedExpects.expectStringValues(actualVendorBusinessName, newVendorDetails.vendor_business_name, 'VendorBusinessName');
     });
 
     await test.step('validate BUSINESS CONTACT NAME  on Add new vendor page', async () => {
