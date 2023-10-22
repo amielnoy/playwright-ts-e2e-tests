@@ -44,7 +44,7 @@ test.describe('Test creation of new vendors on vendors tab', () => {
     await currMelioLoginBuildingBlock.login(username, password);
   });
 
-  test('new-vendor-full-contact-no-delivery-method', async () => {
+  test('new-vendor-full-contact-no-delivery-method @sanity @vendors', async () => {
     allure.tms('Create vendor full-contact-no-delivery-method', 'https://meliorisk.atlassian.net/browse/ME-37970');
     await currMelioIoDashboardPage.clickVendorsTabButton();
 

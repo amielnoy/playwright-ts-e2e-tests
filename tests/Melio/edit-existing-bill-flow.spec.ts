@@ -11,7 +11,7 @@ import billDetails from '../../Data/Bills/bill_details.json';
 //3.On Schedule payment form fill in the payment shedule details
 //4.
 
-test.describe('Editing first existing bill - on payment Inbox tab', () => {
+test.describe('Editing first existing bill - on payment Inbox tab @sanity @poc', () => {
   let currPayInboxBuildingBlocks: PayInboxBuildingBlocks;
   let currMelioLoginBuildingBlock: MelioLoginBuildingBlock;
   let currPaymentInboxPage: PaymentInboxPage;
