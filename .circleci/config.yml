@@ -15,6 +15,7 @@ jobs:
           name: create enviornment file from circle ci.
           command: |
             set -x
+            mkdir environment
             ENV_FILE="environment/.env.local_sanity"
             echo "USERNAME1=${USERNAME1}" >> "$ENV_FILE"
             echo "PASSWORD1=${PASSWORD1}" >> "$ENV_FILE"
