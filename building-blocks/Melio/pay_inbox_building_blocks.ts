@@ -1,7 +1,7 @@
 import { test, Page, expect } from '@playwright/test';
 import { PaymentInboxPage } from '../../pages/MelioSinglePaymentFlow/PaymentDashboard/PayInboxPage';
 import { BillPageDetails } from '../../types/BillDetails';
-import DatePickerOperations from '../../utils/gui-utils/datePickerOperations';
+import DatePickerOperations from '../../utils/gui-utils/DatePickerOperations';
 
 export class PayInboxBuildingBlocks {
   readonly page: Page;
