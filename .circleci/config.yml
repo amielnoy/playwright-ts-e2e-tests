@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.39.0-jammy
+      - image: mcr.microsoft.com/playwright:v1.45.1-jammy
     parallelism: 4
     working_directory: ~/app
 
